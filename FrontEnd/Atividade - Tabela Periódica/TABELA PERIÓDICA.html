@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TABELA PERIÓDICA</title>
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700');
+
+/* GLOBAL STYLES */
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+	box-sizing:border-box;
+}
+	
+:root{
+	--bg-preto:rgb(0, 0, 0);
+	--nao-metal:rgb(12, 0, 187);
+	--gas-nobre:rgb(0, 238, 255);
+	--metal-alcalino:rgb(255, 174, 0);
+	--metal-alcalino-terroso:rgb(255, 238, 0);
+	--semimetal:rgb(0, 255, 225);
+	--halogenio:rgb(0, 68, 105);
+	--outros-metais:rgb(0, 117, 117);
+	--metal-transicao:rgb(255, 0, 0);
+	--lantanideo:rgb(0, 151, 88);
+	--actinidio:rgb(255, 224, 247);
+}
+
+body{
+	font:1em/1 'Montserrat';
+	color:rgb(255, 255, 255);
+	text-align:center;
+	padding:1em 5%;
+	background:var(--bg-preto);
+}
+
+	
+/* FOREGROUND COLOR VARIABLES */
+.nao-metal{
+	color:var(--nao-metal);
+}
+	
+.gas-nobre{
+	color:var(--gas-nobre);
+}
+
+.metal-alcalino{
+	color:var(--metal-alcalino);
+}
+	
+.metal-alcalino-terroso{
+	color:var(--metal-alcalino-terroso);
+}
+	
+.semimetal{
+	color:var(--semimetal);
+}
+	
+.halogenio{
+	color:var(--halogenio);
+}
+	
+.outros-metais{
+	color:var(--outros-metais);
+}
+	
+.metal-transicao{
+	color:var(--metal-transicao);
+}
+	
+.lantanideo{
+	color:var(--lantanideo);
+}
+	
+.actinidio{
+	color:var(--actinidio);
+}
+
+	
+/* TYPOGRAPHY STYLES */
+h1{
+	margin:.5em 0;
+	font-size:calc(3vw + 2rem);
+	font-weight:100;
+	text-transform:uppercase;
+	letter-spacing:-.05em;
+}
+
+h2{
+	font-size:2em;
+}
+
+p:last-child{
+	font-size:.8em;	
+}
+
+
+/* GRID CONTAINER STYLES */
+main{
+	margin:auto;
+	max-width:45em;
+	display:flex;
+}
+
+#grid-container{
+	flex-grow:1;
+	min-width:7em;	
+}
+
+.col-hidden{
+	display:none;	
+}
+
+
+/* GRID CELL */
+section{
+	height:7em;
+	background:var(--bg-preto);	
+	border:.150rem solid;
+	border-radius:.25rem;	
+	line-height:1.25;
+	margin-bottom:.5em;
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+}
+
+span{
+	font-size:.75em;
+	position:absolute;
+	top:.3em;
+	left:.5em;	
+}
+
+
+/* FOOTER */
+footer{
+	font-size:.8em;
+	text-align:left;	
+	flex-basis:13.5rem;
+	margin:-.25em 0 0 1em;
+}
+
+ul{
+	display:flex;
+	flex-wrap:wrap;
+  position:sticky;
+  top:1em;
+}
+
+li{
+	flex-basis:100%;
+	line-height:1.25;
+	margin-bottom:1em;	
+}
+
+li:before{
+	content:' ';
+	display:inline-block;
+	width:1em;
+	height:1em;
+	border:.125em solid;
+	border-radius:.125rem;	
+	margin-right:.5em;
+	position:relative;
+	top:.25em;
+}
+
+
+@media only screen and (min-width:92.5em){
+	@supports (display:grid){
+		
+		/* GLOBAL STYLES */
+		
+		body{
+			font-size:.65em;
+			padding:2em;	
+		}
+		
+		
+		/* GRID CONTAINER STYLES */
+	
+		main{
+			max-width:130.5em;
+			display:block;
+		}
+		
+		#grid-container{
+			display:grid;
+			grid-template-columns:repeat(18, 7em);
+			grid-gap:.50em;	
+		}
+			
+		.col-span16{
+			grid-column:span 16;
+		}
+			
+		.col-span10{
+			grid-column:span 10;
+		}
+			
+		.col-span3{
+			grid-column:span 3;
+		}
+			
+		.col-hidden{
+			display:block;
+			visibility:hidden;
+		}
+			
+		
+		/* GRID CELL */
+		
+		section{
+			margin:0;
+		}
+		
+        
+		section:hover{
+			transition:.2s;
+			transform:scale(1.5);
+			cursor:pointer;
+			z-index:2;
+		}
+		
+		/* FOOTER */
+	
+		footer{
+			font-size:1em;
+			width:100%;
+			margin:2em 0;
+		}
+		
+		ul{
+			justify-content:center;
+		}
+		
+		li{
+			flex-basis:auto;
+			margin-bottom:0;	
+		}
+		
+		li + li{
+			margin-left:2em;	
+		}	
+	}
+}
+
+.clickToShowInfo {
+		position: relative;
+	}
+	/* When clicking outer div, make inner div visible */
+	.clickToShowInfo:active .info { visibility: visible; }
+	/* And hold by staying visible on hover */
+	.info:hover {
+		visibility: visible;
+	}
+	/* General settings for popup */
+	.info {
+		position: absolute;
+		top: -10;
+		visibility: hidden;
+		z-index: 100;
+		background-color: rgb(27, 27, 27);
+		border: 1px solid rgb(119, 119, 119);
+		padding: 8px;
+		width: 350px;
+		height: 100px;
+	}
+	/* If we want clicking on the popup to close, use this */
+	.info:active {
+		visibility: hidden;	/* Doesn't work because DCEvent is :active as well */
+		height: 0px;
+		width: 0px;
+		left: -1000px;
+		top: -1000px;
+
+	}
+@media only screen and (min-width:102.5em){
+	/* GLOBAL STYLES */
+		
+		body{
+			font-size:.75em;	
+		}	
+}
+
+</style>
+<body>
+    <main>
+      <div id="grid-container">
+        <!-- LINHA 1 -->
+        <section class="nao-metal ">
+          
+         <div class="clickToShowInfo">
+                <div class="info">
+                    <pre>
+                    Número atômico: 1
+                    Peso atômico (massa atômica relativa): De 1,00784 a 1,00811 E se você precisa de um valor indico que utilize 1,008.
+                    Ponto de fusão: 14,025 K (-259,2 °C)
+                    Ponto de ebulição: 20,28 K (-252,87 °C)
+                    Aparência: gás incolor (nas CNTP)
+                    Número CAS: 1333-74-0
+                    Entalpia de fusão: 0,558 kJ mol-1 (por mol de átomos)
+                    Entalpia de vaporização: 0,452  kJ mol-1 (por mol de átomos)           
+                    </pre>
+        </div>
+          <span>1</span>
+          <h2>H</h2>
+          <p>Hidrogênio</p>
+          <p>1008</p>
+        </div>
+        </section>
+    
+        <section class="col-hidden col-span16"></section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 2
+Peso atômico (massa atômica relativa): 4,002602(2)
+Ponto de fusão do hélio: 0,95 K a 26 atm (-272,2 °C)
+Ponto de ebulição do elemento hélio: 4,22 K (-268,93 °C)        
+        
+        </pre>
+    </div>
+          <span>2</span>
+          <h2>He</h2>
+          <p>Hélio</p>
+          <p>4,0026</p>
+          </div>
+        </section>
+    
+        <!-- LINHA 2 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 3
+Peso atômico (massa atômica relativa): De 6,938 a 6,99 . E se você precisa de um valor indico que utilize 6,94.
+Ponto de fusão: 453,6 K (180,5 °C)
+Ponto de ebulição: 1615 K (1342 °C)     
+        
+        </pre>
+    </div>
+          <span>3</span>
+          <h2>Li</h2>
+          <p>Lítio</p>
+          <p>6,64</p>
+          </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 4
+Peso atômico (massa atômica relativa): 9,0121831(5)
+Ponto de fusão: 1560 K (1287 °C)
+Ponto de ebulição: 2742 K (2469 °C) 
+        
+        </pre>
+    </div>
+          <span>4</span>
+          <h2>Be</h2>
+          <p>Berílio</p>
+          <p>9,0122</p>
+          </div>
+        </section>
+    
+        <section class="col-hidden col-span10"></section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 5
+Peso atômico (massa atômica relativa): De 10,806 a 10,821. Se você precisa de um valor único indico que utilize 10,81.
+Ponto de fusão: 2348 K (2075 °C)
+Ponto de ebulição: 4273 K (4000 °C)
+        
+        </pre>
+    </div>
+          <span>5</span>
+          <h2>B</h2>
+          <p>Boro</p>
+          <p>10,81</p>
+            </div>
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 6
+Peso atômico (massa atômica relativa): De 12,0096 a 12,0116. OBS: Se você precisa de um valor único, indico que utilize 12,011.
+Ponto de fusão: –
+Ponto de ebulição: 4300 K (4027 °C) [valores para o diamante]
+        
+        </pre>
+    </div>
+          <span>6</span>
+          <h2>C</h2>
+          <p>Carbono</p>
+          <p>12,011</p>
+          </div>
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 7
+Peso atômico (massa atômica relativa): De 14,00643 a 14,00728 .Se você precisa de um valor único indico que utilize 14,007.
+Ponto de fusão: 63,15 K (-210,00 °C)
+Ponto de ebulição: 75,36 K (-198,79 °C)
+        
+        </pre>
+    </div>
+          <span>7</span>
+          <h2>N</h2>
+          <p>Nitrogênio</p>
+          <p>14,007</p>
+          </div>
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 8
+Peso atômico (massa atômica relativa): De 15,99903 a 15,99977. Se você precisa de um valor único, indico que utilize 15,999.
+Ponto de fusão: 50,35 K (-222,8 °C)
+Ponto de ebulição: 90,18 K (-182,97 °C)
+        </pre>
+    </div>
+          <span>8</span>
+          <h2>O</h2>
+          <p>Oxigênio</p>
+          <p>15,999</p>
+          </div>
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 9
+Peso atômico (massa atômica relativa): 18,998403163(6)
+Ponto de fusão: 53,53 K (-219,62 °C)
+Ponto de ebulição: 85,03 K (-188,12 °C)
+        </pre>
+    </div>
+          <span>9</span>
+          <h2>F</h2>
+          <p>Flúor</p>
+          <p>18,998</p>
+          </div>
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 10
+Peso atômico (massa atômica relativa): 20,1797(6)
+Ponto de fusão: 24,56 K (–248,6 °C)
+Ponto de ebulição: 27,07 K (-246,08 °C)
+        </pre>
+    </div>
+          <span>10</span>
+          <h2>Ne</h2>
+          <p>Neônio</p>
+          <p>20,180</p>
+          </div>
+        </section>
+    
+        <!-- LINHA 3 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 11
+Peso atômico (massa atômica relativa): 22,98976928(2)
+Ponto de fusão: 370,95 K (97,80 °C)
+Ponto de ebulição: 1156 K (883 °C)
+        </pre>
+    </div>
+          <span>11</span>
+          <h2>Na</h2>
+          <p>Sódio</p>
+          <p>22,990</p>
+          </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 12
+Peso atômico (massa atômica relativa): De 24,304 a 24,307. Se você precisa de um valor único, indico que utilize 24,305.
+Ponto de fusão: 923 K (650 °C)
+Ponto de ebulição: 1363 K (1090 °C)
+        </pre>
+    </div>
+          <span>12</span>
+          <h2>Mg</h2>
+          <p>Magnésio</p>
+          <p>24,305</p>
+          </div>
+        </section>
+    
+        <section class="col-hidden col-span10"></section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 13
+Peso atômico (massa atômica relativa): 26,9815384(3)
+Ponto de fusão: 933,473 K (660,323 °C)
+Ponto de ebulição: 2792 K (2519 °C)
+        </pre>
+    </div>
+          <span>13</span>
+          <h2>Al</h2>
+          <p>Alumínio</p>
+          <p>26,982</p>
+          </div>
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 14
+Peso atômico (massa atômica relativa): De 28,084 a 28,086. Se você precisa de um valor único, indico que utilize 28,085.
+Ponto de fusão: 1687 K (1414 °C)
+Ponto de ebulição: 3538 K (3265 °C)
+        </pre>
+    </div>
+          <span>14</span>
+          <h2>Si</h2>
+          <p>Silício</p>
+          <p>28,085</p>
+          </div>
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 15
+Peso atômico (massa atômica relativa): 30,973761998(5)
+Ponto de fusão (fósfoto branco): 317,3 K (44,15 °C)
+Ponto de ebulição: 553,6 K (280,5 °C)
+        </pre>
+    </div>
+          <span>15</span>
+          <h2>P</h2>
+          <p>Fósforo</p>
+          <p>30,974</p>
+          </div>
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 16
+Peso atômico (massa atômica relativa): De 32,059 a 32,076. Se você precisa de um valor único, indico que utilize 32,06.
+Ponto de fusão: 388,36 K (115,21 °C)
+Ponto de ebulição: 717,75 K (444,60 °C)
+        </pre>
+    </div>
+          <span>16</span>
+          <h2>S</h2>
+          <p>Enxofre</p>
+          <p>32,06</p>
+         </div>
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 17
+Peso atômico (massa atômica relativa): De 35,446 a 35,457 . Se você precisa de um valor único, indico que utilize 35,45.
+Ponto de fusão: 171,6 K (-101,5 °C)
+Ponto de ebulição: 239,11 K (-34,04 °C)
+        </pre>
+    </div>
+          <span>17</span>
+          <h2>Cl</h2>
+          <p>Cloro</p>
+          <p>35,45</p>
+          </div>
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 18
+Peso atômico (massa atômica relativa): [39,792 a 39,963] . OBS: se precisar de um valor único, indico que utilize 39,95.
+Ponto de fusão: 83,80 K (-189,35 °C)
+Ponto de ebulição: 87,30 K (-185,85 °C)
+        </pre>
+    </div>
+          <span>18</span>
+          <h2>Ar</h2>
+          <p>Argônio</p>
+          <p>39,948</p>
+          </div>
+        </section>
+    
+        <!-- LINHA 4 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 19
+Peso atômico (massa atômica relativa): 39,0983(1)
+Ponto de fusão: 336,53 K (63,38 °C)
+Ponto de ebulição: 1032 K (759 °C)
+        </pre>
+    </div>
+          <span>19</span>
+          <h2>K</h2>
+          <p>Potássio</p>
+          <p>39,098</p>
+         </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 20
+Peso atômico (massa atômica relativa): 40,078(4)
+Ponto de fusão: 1115 K (842 °C)
+Ponto de ebulição: 1757 K (1484 °C)
+        </pre>
+    </div>
+          <span>20</span>
+          <h2>Ca</h2>
+          <p>Cálcio</p>
+          <p>40,078(4)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+        
+Número atômico: 21
+Peso atômico (massa atômica relativa): 44,955908(5)
+Ponto de fusão: 1814 K (1541 °C)
+Ponto de ebulição: 3109 K (2836 °C)
+        </pre>
+    </div>
+          <span>21</span>
+          <h2>Sc</h2>
+          <p>Escândio</p>
+          <p>44,956</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 22
+Peso atômico (massa atômica relativa): 47,867(1)
+Ponto de fusão: 1941 K (1668 °C)
+Ponto de ebulição: 3560 K (3287 °C)
+        </pre>
+    </div>
+          <span>22</span>
+          <h2>Ti</h2>
+          <p>Titânio</p>
+          <p>47,867</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 23
+Peso atômico (massa atômica relativa): 50,9415(1)
+Ponto de fusão: 2183 K (1910 °C)
+Ponto de ebulição: 3680 K (3407 °C)
+        </pre>
+    </div>
+          <span>23</span>
+          <h2>V</h2>
+          <p>Vanádio</p>
+          <p>50,942</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 24
+Peso atômico (massa atômica relativa): 51,9961(6)
+Ponto de fusão: 2180 K (1907 °C)
+Ponto de ebulição: 2944 K (2671 °C)
+        </pre>
+    </div>
+          <span>24</span>
+          <h2>Cr</h2>
+          <p>Crômio</p>
+          <p>51,996</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 25
+Peso atômico (massa atômica relativa): 54,938043(2)
+Ponto de fusão: 1519 K (1246 °C)
+Ponto de ebulição: 2334 K (2061 °C)
+        </pre>
+    </div>
+          <span>25</span>
+          <h2>Mn</h2>
+          <p>Manganês</p>
+          <p>54,938</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 26
+Peso atômico (massa atômica relativa): 55,845(2)
+Ponto de fusão: 1811 K (1538 °C)
+Ponto de ebulição: 3134 K (2861 °C)
+        </pre>
+    </div>
+          <span>26</span>
+          <h2>Fe</h2>
+          <p>Ferro</p>
+          <p>55,845(2)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 27
+Peso atômico (massa atômica relativa): 58,933194(3)
+Ponto de fusão: 1768 K (1495 °C)
+Ponto de ebulição: 3200 K (2927 °C)
+        </pre>
+    </div>
+          <span>27</span>
+          <h2>Co</h2>
+          <p>Cobalto</p>
+          <p>58,933</p>
+          </div>
+        </section>
+    
+        <section class="metal-transicao">
+             
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 28
+Peso atômico (massa atômica relativa): 58,6934(4)
+Ponto de fusão: 1728 K (1455 °C)
+Ponto de ebulição: 3186 K (2913 °C)
+        </pre>
+    </div>
+          <span>28</span>
+          <h2>Ni</h2>
+          <p>Níquel</p>
+          <p>58,693</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 29
+Peso atômico (massa atômica relativa): 63,546(3)
+Ponto de fusão: 1357,77 K (1084,62 °C)
+Ponto de ebulição: 2835 K (2562 °C)
+        </pre>
+    </div>
+          <span>29</span>
+          <h2>Cu</h2>
+          <p>Cobre</p>
+          <p>63,546(3)</p>
+          </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 30
+Peso atômico (massa atômica relativa): 65,38(2)
+Ponto de fusão: 692.68 K (419.53 °C)
+Ponto de ebulição: 1180 K (907 °C)
+        </pre>
+    </div>
+          <span>30</span>
+          <h2>Zn</h2>
+          <p>Zinco</p>
+          <p>65,38(2)</p>
+          </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+            <div class="clickToShowInfo">
+                <div class="info">
+			<pre>
+Número atômico: 31
+Peso atômico (massa atômica relativa): 69,723(1)
+Ponto de fusão: 302,15 K (29,76 °C)
+Ponto de ebulição: 2477 K (2204 °C)
+			</pre>
+        </div>
+        </pre>
+          <span>31</span>
+          <h2>Ga</h2>
+          <p>Gálio</p>
+          <p>69,723</p>
+        </div>
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 32
+Peso atômico (massa atômica relativa): 72,630(8)
+Ponto de fusão: 1211,4 K (938,25 °C)
+Ponto de ebulição: 3106 K (2833 °C)
+        </pre>
+    </div>
+          <span>32</span>
+          <h2>Ge</h2>
+          <p>Germânio</p>
+          <p>72,630(8)</p>
+          </div>
+
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 33
+Peso atômico (massa atômica relativa): 74,921595(6)
+Ponto de fusão: 1090 K (862 °C)
+Ponto de ebulição: 887 K (614 °C)
+        </pre>
+    </div>
+          <span>33</span>
+          <h2>As</h2>
+          <p>Arsênio</p>
+          <p>74,922</p>
+          </div>
+
+        </section>
+    
+        <section class="nao-metal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 34
+Peso atômico (massa atômica relativa): 78,971(8)
+Ponto de fusão: 494 K (221 °C)
+Ponto de ebulição: 958 K (685 °C)
+        </pre>
+    </div>
+          <span>34</span>
+          <h2>Se</h2>
+          <p>Selênio</p>
+          <p>78,971(8)</p>
+          </div>
+
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 35
+Peso atômico (massa atômica relativa): De 79,901 a 79,907. Se você precisa de um valor único, indico que utilize 79,904.
+Ponto de fusão do bromo: 266 K (-7,2 °C)
+Ponto de ebulição do bromo: 332 K (58,8 °C)
+        </pre>
+    </div>
+          <span>35</span>
+          <h2>Br</h2>
+          <p>Bromo</p>
+          <p>79,904</p>
+         </div>
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 36
+Peso atômico (massa atômica relativa): 83,798(2)
+Ponto de fusão: 115,79 K (-157,36 °C)
+Ponto de ebulição: (119,93±0,10) K ou (-153,22±0,10) °C
+        </pre>
+    </div>
+          <span>36</span>
+          <h2>Kr</h2>
+          <p>Criptônio</p>
+          <p>83,798(2)</p>
+          </div>
+        </section>
+    
+        <!-- LINHA 5 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 37
+Peso atômico (massa atômica relativa): 85,4678(3)
+Ponto de fusão: 312,46 K (39,31 °C)
+Ponto de ebulição: 961 K (688 °C)
+        </pre>
+    </div>
+          <span>37</span>
+          <h2>Rb</h2>
+          <p>Rubídio</p>
+          <p>85,468</p>
+          </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 38
+Peso atômico (massa atômica relativa): 87,62(1)
+Ponto de fusão: 1050 K (777 °C)
+Ponto de ebulição: 1655 K (1382 °C)
+        </pre>
+    </div>
+          <span>38</span>
+          <h2>Sr</h2>
+          <p>Estrôncio</p>
+          <p>87,62</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 39
+Peso atômico (massa atômica relativa): 88,90584(1)
+Ponto de fusão: 1795 K (1522 °C)
+Ponto de ebulição: 3618 K (3345 °C)
+        </pre>
+    </div>
+          <span>39</span>
+          <h2>Y</h2>
+          <p>Ítrio</p>
+          <p>88,906</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 40
+Peso atômico (massa atômica relativa): 91,224(2)
+Ponto de fusão: 2128 K (1855 °C)
+Ponto de ebulição: 4682 K (4409 °C)
+        </pre>
+    </div>
+          <span>40</span>
+          <h2>Zr</h2>
+          <p>Zircônio</p>
+          <p>91,224(2)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 41
+Peso atômico (massa atômica relativa): 92,90637(1)
+Ponto de fusão: 2750 K (2477 °C)
+Ponto de ebulição: 5017 K (4744 °C)
+        </pre>
+    </div>
+          <span>41</span>
+          <h2>Nb</h2>
+          <p>Nióbio</p>
+          <p>92,906</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 42
+Peso atômico (massa atômica relativa): 95,95(1)
+Ponto de fusão: 2896 K (2623 °C)
+Ponto de ebulição: 4912 K (4639 °C)
+        </pre>
+    </div>
+          <span>42</span>
+          <h2>Mo</h2>
+          <p>Molibdênio</p>
+          <p>95,95</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 43
+Peso atômico (número de massa do isótopo mais estável): [98]
+Ponto de fusão: 2430 K (2157 °C)
+Ponto de ebulição: 4538 K (4265 °C)
+        </pre>
+    </div>
+          <span>43</span>
+          <h2>Tc</h2>
+          <p>Tecnécio</p>
+          <p>[98]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 44
+Peso atômico (massa atômica relativa): 101,07(2)
+Ponto de fusão: 2607 K (2334 °C)
+Ponto de ebulição: 4423 K (4150 °C)
+        </pre>
+    </div>
+          <span>44</span>
+          <h2>Ru</h2>
+          <p>Rutênio</p>
+          <p>101,07(2)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 45
+Peso atômico (massa atômica relativa): 102,90549(2)
+Ponto de fusão: 2237 K (1964 °C)
+Ponto de ebulição: 3968 K (3695 °C)
+        </pre>
+    </div>
+          <span>45</span>
+          <h2>Rh</h2>
+          <p>Ródio</p>
+          <p>102,91</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 46
+Peso atômico (massa atômica relativa): 106,42(1)
+Ponto de fusão: 1828,0 K (1554,9 °C)
+Ponto de ebulição: 3236 K (3236 °C)
+        </pre>
+    </div>
+          <span>46</span>
+          <h2>Pd</h2>
+          <p>Paládio</p>
+          <p>106,42</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 47
+Peso atômico (massa atômica relativa): 107,8682(2)
+Ponto de fusão: 1234,93 K (961,78 °C)
+Ponto de ebulição: 2435 K (2162 °C)
+        </pre>
+    </div>
+          <span>47</span>
+          <h2>Ag</h2>
+          <p>Prata</p>
+          <p>107,87</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 48
+Peso atômico (massa atômica relativa): 112,414(4)
+Ponto de fusão: 594,22 K (321,07 °C)
+Ponto de ebulição: 1040 K (767 °C)
+        </pre>
+    </div>
+          <span>48</span>
+          <h2>Cd</h2>
+          <p>Cádmio</p>
+          <p>112,41</p>
+          </div>
+
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 49
+Peso atômico (massa atômica relativa): 114,818(1)
+Ponto de fusão: 429,75 K (156,60 °C)
+Ponto de ebulição: 2345 K (2072 °C)
+        </pre>
+    </div>
+          <span>49</span>
+          <h2>In</h2>
+          <p>Índio</p>
+          <p>114,82</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 50
+Peso atômico (massa atômica relativa): 118,710(7)
+Ponto de fusão: 505,08 K (231,93 °C)
+Ponto de ebulição: 2875 K (2602 °C)
+        </pre>
+    </div>
+          <span>50</span>
+          <h2>Sn</h2>
+          <p>Estanho</p>
+          <p>118,71</p>
+         </div>
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 51
+Peso atômico (massa atômica relativa): 121,760(1)
+Ponto de fusão: 903,78 K (630,63 °C)
+Ponto de ebulição: 1860 K (1587 °C
+        </pre>
+    </div>
+          <span>51</span>
+          <h2>Sb</h2>
+          <p>Antimônio</p>
+          <p>121,76</p>
+         </div>
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 52
+Peso atômico (massa atômica relativa): 127,60(3)
+Ponto de fusão: 722,66 K (449,51 °C)
+Ponto de ebulição: 1261 K (988 °C)
+        </pre>
+    </div>
+          <span>52</span>
+          <h2>Te</h2>
+          <p>Telúrio</p>
+          <p>127,60(3)</p>
+         </div>
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 53
+Peso atômico (massa atômica relativa): 126,90447(3)
+Ponto de fusão: 386,85 K (113,7 °C)
+Ponto de ebulição: 457,6 K (184,4 °C)
+        </pre>
+    </div>
+          <span>53</span>
+          <h2>I</h2>
+          <p>Iodo</p>
+          <p>126,90</p>
+          </div>
+
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 54
+Peso atômico (massa atômica relativa): 131,293(6)
+Ponto de fusão: 161,36 K (-111,79 °C)
+Ponto de ebulição: 165,03 K (-108,12 °C)
+        </pre>
+    </div>
+          <span>54</span>
+          <h2>Xe</h2>
+          <p>Xenônio</p>
+          <p>131,29</p>
+          </div>
+
+        </section>
+    
+        <!-- LINHA 6 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 55
+Peso atômico (massa atômica relativa): 132,90545196(6)
+Ponto de fusão: 301,6 K (28,44 °C)
+Ponto de ebulição: 944 K (671 °C)
+        </pre>
+    </div>
+          <span>55</span>
+          <h2>Cs</h2>
+          <p>Césio</p>
+          <p>132,91</p>
+         </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 56
+Peso atômico (massa atômica relativa): 137,327(7)
+Ponto de fusão: 1000 K (727 °C)
+Ponto de ebulição: 2170 K (1897 °C)
+        </pre>
+    </div>
+          <span>56</span>
+          <h2>Ba</h2>
+          <p>Bário</p>
+          <p>137,33</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+          <span>57 - 71</span>
+          <h2>* *</h2>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 72
+Peso atômico (massa atômica relativa): 178,486(6)
+Ponto de fusão: 2506 K (2233 °C)
+Ponto de ebulição: 4876 K (4603 °C)
+        </pre>
+    </div>
+          <span>72</span>
+          <h2>Hf</h2>
+          <p>Háfnio</p>
+          <p>178,49(2)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 73
+Peso atômico (massa atômica relativa): 180,94788(2)
+Ponto de fusão: 3290 K (3017 °C)
+Ponto de ebulição: 5731 K (5458 °C)
+        </pre>
+    </div>
+          <span>73</span>
+          <h2>Ta</h2>
+          <p>Tântalo</p>
+          <p>180,95</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 74
+Peso atômico (massa atômica relativa): 183,84(1)
+Ponto de fusão: 3695 K (3422 °C)
+Ponto de ebulição: 5828 K (5555 °C)
+        </pre>
+    </div>
+          <span>74</span>
+          <h2>W</h2>
+          <p>Tungstênio</p>
+          <p>183,84</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 75
+Peso atômico (massa atômica relativa): 186,207(1)
+Ponto de fusão: 3459 K (3186 °C)
+Ponto de ebulição: 5869 K (5596 °C)
+        </pre>
+    </div>
+          <span>75</span>
+          <h2>Re</h2>
+          <p>Rênio</p>
+          <p>186,21</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 76
+Peso atômico (massa atômica relativa): 190,23(3)
+Ponto de fusão: 3306 K (3033 °C)
+Ponto de ebulição: 5285 K (5012 °C)
+        </pre>
+    </div>
+          <span>76</span>
+          <h2>Os</h2>
+          <p>Ósmio</p>
+          <p>190,23(3)</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 77
+Peso atômico (massa atômica relativa): 192,217(2)
+Ponto de fusão: 2719 K (2446 °C)
+Ponto de ebulição: 4701 K (4428 °C)
+        </pre>
+    </div>
+          <span>77</span>
+          <h2>Ir</h2>
+          <p>Irídio</p>
+          <p>192,22</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 78
+Peso atômico (massa atômica relativa): 195,084(9)
+Ponto de fusão: 2041,15 K (1768,4 °C)
+Ponto de ebulição: 4098 K (3825 °C)
+        </pre>
+    </div>
+          <span>78</span>
+          <h2>Pt</h2>
+          <p>Platina</p>
+          <p>195,08</p>
+          </div>
+
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 79
+Peso atômico (massa atômica relativa): 196,966570(4)
+Ponto de fusão: 1337,33 K (1064,18 °C)
+Ponto de ebulição: 3129 K (2856 °C)
+        </pre>
+    </div>
+          <span>79</span>
+          <h2>Au</h2>
+          <p>Ouro</p>
+          <p>196,97</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 80
+Peso atômico (massa atômica relativa): 200,592(3)
+Ponto de fusão: 234,32 K (-38,83 °C)
+Ponto de ebulição: 629,88 K (356,73 °C)
+        </pre>
+    </div>
+          <span>80</span>
+          <h2>Hg</h2>
+          <p>Mercúrio</p>
+          <p>200,59</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 81
+Peso atômico (massa atômica relativa): De 204,382 a 204,385. Se você precisa de um valor único, indico que utilize 204,38.
+Ponto de fusão: 577 K (304 °C)
+Ponto de ebulição: 1746 K (1473 °C)
+        </pre>
+    </div>
+          <span>81</span>
+          <h2>Tl</h2>
+          <p>Tálio</p>
+          <p>204,38</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 82
+Peso atômico (massa atômica relativa): 207,2(1)
+Ponto de fusão: 327.46 °C
+Ponto de ebulição: 1749 °C
+        </pre>
+    </div>
+          <span>82</span>
+          <h2>Pb</h2>
+          <p>Chumbo</p>
+          <p>207,2</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 83
+Peso atômico (massa atômica relativa): 208,98040(1)
+Ponto de fusão do bismuto: 544,6 K (271,4 °C)
+Ponto de ebulição do bismuto: 1837 K (1564 °C)
+        </pre>
+    </div>
+          <span>83</span>
+          <h2>Bi</h2>
+          <p>Bismuto</p>
+          <p>208,98</p>
+         </div>
+        </section>
+    
+        <section class="semimetal">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 84
+Peso atômico (número de massa do isótopo mais estável): [209]
+Ponto de fusão: 527 K (254 °C)
+Ponto de ebulição: 1235 K (962 °C)
+        </pre>
+    </div>
+          <span>84</span>
+          <h2>Po</h2>
+          <p>Polônio</p>
+          <p>[209]</p>
+         </div>
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 85
+Peso atômico (número de massa do isótopo mais estável): [210] u
+Ponto de fusão: 302 °C (575 K)
+Ponto de ebulição: Sem dados
+        </pre>
+    </div>
+          <span>85</span>
+          <h2>At</h2>
+          <p>Aslato</p>
+          <p>[210]</p>
+         </div>
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 86
+Peso atômico (número de massa do isótopo mais estável): [222] u
+Ponto de fusão: 202 K (-71 °C)
+Ponto de ebulição: 211 K (-61,7 °C)
+        </pre>
+    </div>
+          <span>86</span>
+          <h2>Rn</h2>
+          <p>Randônio</p>
+          <p>[222]</p>
+         </div>
+        </section>
+    
+        <!-- LINHA 7 -->
+        <section class="metal-alcalino">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 87
+Peso atômico (número de massa do isótopo mais estável): (223) u
+Ponto de fusão: 300 K (27 °C)
+Ponto de ebulição: 950 K (677 °C)
+        </pre>
+    </div>
+          <span>87</span>
+          <h2>Fr</h2>
+          <p>Frâncio</p>
+          <p>[223]</p>
+         </div>
+        </section>
+    
+        <section class="metal-alcalino-terroso">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 88
+Peso atômico (número de massa do isótopo mais estável): [226] u
+Ponto de fusão: 973 K (700 °C)
+Ponto de ebulição: 2010 K (1737 °C)
+        </pre>
+    </div>
+          <span>88</span>
+          <h2>Ra</h2>
+          <p>Rádio</p>
+          <p>[226]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+
+          <span>89 - 103</span>
+          <h2>* *</h2>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 104
+Massa atômica: [261] u
+        </pre>
+    </div>
+          <span>104</span>
+          <h2>Rf</h2>
+          <p>Rutherfórdio</p>
+          <p>[267]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 105
+Massa atômica: [262] u
+        </pre>
+    </div>
+          <span>105</span>
+          <h2>Db</h2>
+          <p>Dúbnio</p>
+          <p>[268]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 106
+Massa atômica: [266] u
+        </pre>
+    </div>
+          <span>106</span>
+          <h2>Sg</h2>
+          <p>Seabórgio</p>
+          <p>[269]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 107
+Massa atômica: [264] u
+        </pre>
+    </div>
+          <span>107</span>
+          <h2>Bh</h2>
+          <p>Bóhrio</p>
+          <p>[270]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 108
+Massa atômica: [269] u
+        </pre>
+    </div>
+          <span>108</span>
+          <h2>Hs</h2>
+          <p>Hássio</p>
+          <p>[269]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 109
+Massa atômica: [268] u
+        </pre>
+    </div>
+          <span>109</span>
+          <h2>Mt</h2>
+          <p>Meitnério</p>
+          <p>[268]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 110
+Massa atômica: [281] u
+        </pre>
+    </div>
+          <span>110</span>
+          <h2>Ds</h2>
+          <p>Darmstádtio</p>
+          <p>[281]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 111
+Massa atômica: [272] u
+        </pre>
+    </div>
+          <span>111</span>
+          <h2>Rg</h2>
+          <p>Roentgênio</p>
+          <p>[281]</p>
+         </div>
+        </section>
+    
+        <section class="metal-transicao">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 112
+Massa atômica: [277] u
+        </pre>
+    </div>
+          <span>112</span>
+          <h2>Cn</h2>
+          <p>Copernício</p>
+          <p>[285]</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 113
+Massa atômica: supostamente [284] u
+        </pre>
+    </div>
+          <span>113</span>
+          <h2>Nh</h2>
+          <p>Nihônio</p>
+          <p>[286]</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 114
+Massa atômica: [289] u
+        </pre>
+    </div>
+          <span>114</span>
+          <h2>Fl</h2>
+          <p>Felóvio</p>
+          <p>[289]</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 115
+Massa atômica: [288] u (provável)
+        </pre>
+    </div>
+          <span>115</span>
+          <h2>MC</h2>
+          <p>Moscóvio</p>
+          <p>[288]</p>
+         </div>
+        </section>
+    
+        <section class="outros-metais">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 116
+Massa atômica: [292] u (provável)
+        </pre>
+    </div>
+          <span>116</span>
+          <h2>Lv</h2>
+          <p>Livermório</p>
+          <p>[293]</p>
+         </div>
+        </section>
+    
+        <section class="halogenio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 117
+Massa atômica: [291] u (previsão)
+        </pre>
+    </div>
+          <span>117</span>
+          <h2>Ts</h2>
+          <p>Tenessino</p>
+          <p>[294]</p>
+         </div>
+        </section>
+    
+        <section class="gas-nobre">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 118
+Massa atômica: 293 u (provável)
+        </pre>
+    </div>
+          <span>118</span>
+          <h2>Og</h2>
+          <p>Oganessônio</p>
+          <p>[294]</p>
+          </div>
+        </section>
+    
+        <!-- LINHA 8 -->
+        <section class="col-hidden col-span3"></section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 57
+Peso atômico (massa atômica relativa): 138,90547(7)
+Ponto de fusão: 1191 K (918 °C)
+Ponto de ebulição: 3737 K (3464 °C)
+        </pre>
+    </div>
+          <span>57</span>
+          <h2>La</h2>
+          <p>Lantânio</p>
+          <p>138,91</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 58
+Peso atômico (massa atômica relativa): 140,116(1)
+Ponto de fusão: 1071 K (798 °C)
+Ponto de ebulição: 3699 K (3424 °C)
+        </pre>
+    </div>
+          <span>58</span>
+          <h2>Ce</h2>
+          <p>Cério</p>
+          <p>140,12</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 59
+Peso atômico (massa atômica relativa): 140,90766(1)
+Ponto de fusão: 1204 K (931 °C)
+Ponto de ebulição: 3793 K (3520 °C)
+        </pre>
+    </div>
+          <span>59</span>
+          <h2>Pr</h2>
+          <p>Praseodímio</p>
+          <p>140,91</p>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 60
+Peso atômico (massa atômica relativa): 144,242(3)
+Ponto de fusão: 1294 K (1021 °C)
+Ponto de ebulição: 3347 K (3074 °C)
+        </pre>
+    </div>
+          <span>60</span>
+          <h2>Nd</h2>
+          <p>Neodímio</p>
+          <p>144,24</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 61
+Peso atômico (número de massa do isótopo mais estável): [145]
+
+Ponto de fusão: 1315 K (1042 °C)
+Ponto de ebulição: 3273 K (3000 °C)
+        </pre>
+    </div>
+          <span>61</span>
+          <h2>Pm</h2>
+          <p>Promécio</p>
+          <p>[145]</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 62
+Peso atômico (massa atômica relativa): 150,36(2)
+Ponto de fusão: 1347 K (1074 °C)
+Ponto de ebulição: 2067 K (1794 °C)
+        </pre>
+    </div>
+          <span>62</span>
+          <h2>Sm</h2>
+          <p>Samário</p>
+          <p>150,36(2)</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 63
+Peso atômico (massa atômica relativa): 151,964(1)
+Ponto de fusão: 1095 K (822 °C)
+Ponto de ebulição: 1869 K (1596 °C)
+        </pre>
+    </div>
+          <span>63</span>
+          <h2>Eu</h2>
+          <p>Európio</p>
+          <p>151,96</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 64
+Peso atômico (massa atômica relativa): 157,25(3)
+Ponto de fusão: 1313 °C (1586 K)
+Ponto de ebulição: 3273 °C (3546 K)
+        </pre>
+    </div>
+          <span>64</span>
+          <h2>Gd</h2>
+          <p>Gadolínio</p>
+          <p>157,25(3)</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 65
+Peso atômico (massa atômica relativa): 158,925354(8)
+Ponto de fusão: 1629 K {1356 °C)
+Ponto de ebulição: 3503 K (3230 °C)
+        </pre>
+    </div>
+          <span>65</span>
+          <h2>Tb</h2>
+          <p>Térbio</p>
+          <p>158,93</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 66
+Peso atômico (massa atômica relativa): 162,500(1)
+Ponto de fusão: 1685 K {1412 °C)
+Ponto de ebulição: 2840 K (2567 °C)
+        </pre>
+    </div>
+          <span>66</span>
+          <h2>Dy</h2>
+          <p>Disprósio</p>
+          <p>162,50</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 67
+Peso atômico (massa atômica relativa): 164,930328(7)
+Ponto de fusão: 1747 K (1474 °C)
+Ponto de ebulição: 2973 K (2700 °C)
+        </pre>
+    </div>
+          <span>67</span>
+          <h2>Ho</h2>
+          <p>Hólmio</p>
+          <p>164,93</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 68
+Peso atômico (massa atômica relativa): 167,259(3)
+Ponto de fusão: 1802 K (1529 °C)
+        </pre>
+    </div>
+          <span>68</span>
+          <h2>Er</h2>
+          <p>Érbio</p>
+          <p>167,26</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 69
+Massa atômica: 168,934218(6)
+Ponto de fusão: 1818 K (1545 °C)
+Ponto de ebulição: 2223 K (1950 °C)
+        </pre>
+    </div>
+          <span>69</span>
+          <h2>Tm</h2>
+          <p>Túlio</p>
+          <p>168,93</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 70
+Peso atômico (massa atômica relativa): 173,045(10)
+Ponto de fusão: 1092 K (819 °C)
+Ponto de ebulição: 1469 K (1196 °C)
+        </pre>
+    </div>
+          <span>70</span>
+          <h2>Yb</h2>
+          <p>Itérbio</p>
+          <p>173,05</p>
+         </div>
+        </section>
+    
+        <section class="lantanideo">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 71
+Peso atômico (massa atômica relativa): 174,9668(1)
+Ponto de fusão: 1936 K (1663 °C)
+Ponto de ebulição: 3675 K (3402 °C)
+        </pre>
+    </div>
+          <span>71</span>
+          <h2>Lu</h2>
+          <p>Lutécio</p>
+          <p>174,97</p>
+         </div>
+        </section>
+    
+        <!-- LINHA 9 -->
+        <section class="col-hidden col-span3"></section>
+    
+        <section class="actinidio">3
+        
+            <div class="clickToShowInfo">
+                <div class="info">
+			<pre>
+Número atômico: 89
+Peso atômico (número de massa do isótopo mais estável): (227) u
+Ponto de fusão: 1324 K (1051 °C)
+Ponto de ebulição: 3473±300 K (3200±300 °C)
+			</pre>
+        </div>
+          <span>89</span>
+          <h2>Acs</h2>
+          <p>Actínio</p>
+          <p>[227]</p>
+            </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 90
+Peso atômico (massa atômica relativa): 232,0377(4)
+Ponto de fusão: 2023 K (1750 °C)
+Ponto de ebulição: 5061 K (4788 °C)
+        </pre>
+    </div>
+          <span>90</span>
+          <h2>Th</h2>
+          <p>Thório</p>
+          <p>232,04</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 91
+Peso atômico (massa atômica relativa): 231,03588(1)
+Ponto de fusão: 1845 K (1572 °C)
+Ponto de ebulição: 4300 K (4027 °C)
+        </pre>
+    </div>
+          <span>91</span>
+          <h2>Pa</h2>
+          <p>Protactínio</p>
+          <p>231,04</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 92
+Peso atômico (massa atômica relativa): 238,02891(3)
+Ponto de fusão: 1405,3 K (1131,9 °C)
+Ponto de ebulição: 4404 K (4131 °C)
+        </pre>
+    </div>
+          <span>92</span>
+          <h2>U</h2>
+          <p>Urânio</p>
+          <p>238,03</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 93
+Peso atômico (número de massa do isótopo mais estável): [237] u
+Ponto de fusão: 637 °C (910 K)
+Ponto de ebulição: 4000 °C (4273 K)
+        </pre>
+    </div>
+          <span>93</span>
+          <h2>Np</h2>
+          <p>Netúnio</p>
+          <p>[237]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 94
+Peso atômico (número de massa do isótopo mais estável): [244] u
+Ponto de fusão: 912,5 K (638,8 °C)
+Ponto de ebulição: 3505 K (3232 °C)
+        </pre>
+    </div>
+          <span>94</span>
+          <h2>Pu</h2>
+          <p>Plutônio</p>
+          <p>[244]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 95
+Peso atômico (número de massa do isótopo mais estável): [243] u
+Ponto de fusão: 1449 K (1176 °C)
+Ponto de ebulição: 2284 K (2011 °C)
+        </pre>
+    </div>
+          <span>95</span>
+          <h2>Am</h2>
+          <p>Amerício</p>
+          <p>[243]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 96
+Peso atômico (número de massa do isótopo mais estável): [247] u
+Ponto de fusão: 1618 K (1345 °C)
+Ponto de ebulição: 3383 K (3110 °C)
+        </pre>
+    </div>
+          <span>96</span>
+          <h2>Cm</h2>
+          <p>Cúrio</p>
+          <p>[247]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 97
+Peso atômico (número de massa do isótopo mais estável): [247] u
+        </pre>
+    </div>
+          <span>97</span>
+          <h2>Bk</h2>
+          <p>Berquélio</p>
+          <p>[247]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 98
+Peso atômico (número de massa do isótopo mais estável): [251] u
+Ponto de fusão: 1173 K (900 °C)
+Ponto de ebulição: 1743 K (1470 °C)
+        </pre>
+    </div>
+          <span>98</span>
+          <h2>Cf</h2>
+          <p>Califórnio</p>
+          <p>[251]</p>
+          </div>
+
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 99
+Peso atômico (número de massa do isótopo mais estável): [252]u
+Ponto de fusão: 860 °C (1133 K)
+Ponto de ebulição: –
+        </pre>
+    </div>
+          <span>99</span>
+          <h2>Es</h2>
+          <p>Einstênio</p>
+          <p>[252]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 100
+Peso atômico (número de massa do isótopo mais estável): [257] u
+Ponto de fusão: 1527 °C
+        </pre>
+    </div>
+          <span>100</span>
+          <h2>Fm</h2>
+          <p>Férmio</p>
+          <p>[257]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 101
+Peso atômico (número de massa do isótopo mais estável): [258] u
+Ponto de fusão: 827 °C
+        </pre>
+    </div>
+          <span>101</span>
+          <h2>MD</h2>
+          <p>Mendelévio</p>
+          <p>[258]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 102
+Peso atômico (número de massa do isótopo mais estável): [259] u
+        </pre>
+    </div>
+          <span>102</span>
+          <h2>No</h2>
+          <p>Nobélio</p>
+          <p>[259]</p>
+         </div>
+        </section>
+    
+        <section class="actinidio">
+            
+         <div class="clickToShowInfo">
+            <div class="info">
+        <pre>
+Número atômico: 103
+Massa atômica: [262] u
+        </pre>
+    </div>
+          <span>103</span>
+          <h2>Lr</h2>
+          <p>Laurêncio</p>
+          <p>[262]</p>
+        </section>
+      </div>
+      </div>
+    
+      <!-- FOOTER -->
+      <footer>
+        <ul>
+          <li class="nao-metal">Não Metais</li>
+          <li class="gas-nobre">Gases Nobres</li>
+          <li class="metal-alcalino">Metais Alcalinos</li>
+          <li class="metal-alcalino-terroso">Metais Alcalino-Terrosos</li>
+          <li class="semimetal">Semimetais</li>
+          <li class="halogenio">Halogênios</li>
+          <li class="outros-metais">Outros Metais</li>
+          <li class="metal-transicao">Metais de Transição</li>
+          <li class="lantanideo">Lantanídeos</li>
+          <li class="actinidio">Actinídios</li>
+        </ul>
+      </footer>
+    </main>
+</body>
+</html>
